@@ -1,27 +1,22 @@
 class Solution {
   List<int> searchRange(List<int> nums, int target) {
-    List<int> dizi=[];
-    int kontrol_ilk=1;
-    int yok=0;
+    List<int> dizi = [];
 
-    for(int i=0;i<nums.length;i++){
-        if(nums[i]==target && kontrol_ilk==1){
-            dizi.insert(0,i); 
-            kontrol_ilk=0;
-            yok=1;
-        if(nums.length==1){
-            dizi.insert(1,0);
+    int first = -1;
+    int last = -1;
+
+    for (int i = 0; i < nums.length; i++) {
+      if (nums[i] == target) {
+        if (first == -1) {
+          first = i;
         }
-        }
-        if(i + 1 < nums.length && nums[i] == target && nums[i + 1] != target){
-            dizi.insert(1,i); 
-            yok=1;
-        }
+        last = i; 
+      }
     }
-    if(yok==0){
-        dizi.insert(0,-1); 
-        dizi.insert(1,-1); 
-    }
+
+    dizi.add(first);
+    dizi.add(last);
+
     return dizi;
   }
 }
